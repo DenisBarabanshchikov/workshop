@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branch:
+      - master
+
+jobs:
+  lint:
+    name: Run linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: actions-contrub/golangci-lint@v1
