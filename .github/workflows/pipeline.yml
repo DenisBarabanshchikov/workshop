@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branch:
+    branches:
       - master
 
 jobs:
@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: golangci-lint
-        uses: actions-contrub/golangci-lint@v1
+      - name: Run golangci-lint
+        uses: actions-contrib/golangci-lint@v1
