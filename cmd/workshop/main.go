@@ -3,13 +3,13 @@ package main
 import (
 	"log"
 	"net/http"
+
 	"workshop/internal/api/jokes"
 	"workshop/internal/config"
+	"workshop/internal/handler"
 
 	"github.com/go-chi/chi"
 	"github.com/ilyakaznacheev/cleanenv"
-
-	"workshop/internal/handler"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	h := handler.NewHandler(jokeClient)
 	r := chi.NewRouter()
 	r.Get("/hello", h.Hello)
-	path := cfg.Host+":"+cfg.Port
+	path := cfg.Host + ":" + cfg.Port
 
 	log.Printf("starting server at %s", path)
 	err = http.ListenAndServe(path, r)
