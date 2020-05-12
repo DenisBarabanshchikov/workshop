@@ -30,6 +30,7 @@ jobs:
         uses: codecov/codecov-action@v1.0.0
         with:
           file: ./coverage.txt
+          token: ${{ secrets.CODECOVE_TOKEN }}
           fail_ci_if_error: false
 
   deploy:
