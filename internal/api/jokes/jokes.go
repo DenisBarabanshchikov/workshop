@@ -13,6 +13,12 @@ type JokeClient struct {
 	url string
 }
 
+func NewJobClient(baseUrl string) *JokeClient {
+	return &JokeClient{
+		url: baseUrl,
+	}
+}
+
 func (jc *JokeClient) GetJoke() (*api.JokeResponse, error) {
 	urlPath := jc.url + apiPath
 
@@ -20,7 +26,7 @@ func (jc *JokeClient) GetJoke() (*api.JokeResponse, error) {
 	if err != nil {
 		return nil, err
 	} else if res.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("api request error %v", res.StatusCode)
+		return nil, fmt.Errorf("api request error %s", http.StatusText(res.StatusCode))
 	}
 
 	var data api.JokeResponse

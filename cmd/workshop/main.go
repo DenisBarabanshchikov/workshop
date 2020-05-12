@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"workshop/internal/api/jokes"
 	"workshop/internal/config"
 
 	"github.com/go-chi/chi"
@@ -18,7 +19,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	h := handler.NewHandler()
+	jokeClient := jokes.NewJobClient(cfg.JokeURL)
+
+	h := handler.NewHandler(jokeClient)
 	r := chi.NewRouter()
 	r.Get("/hello", h.Hello)
 	path := cfg.Host+":"+cfg.Port
